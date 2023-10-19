@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+package-lock.json
 dist
 dist-ssr
 *.local
@@ -22,6 +23,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-thinsil-tech-assignment.git
-git remote add origin https://github.com/Praful-87/quadb-btech.git
-git push -u origin main
