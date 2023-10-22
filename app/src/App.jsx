@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -7,15 +7,19 @@ import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import Mainroute from "./Mainroute";
 
+export const MyContext = createContext();
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   return (
     <>
-      <Navbar />
-      <Box border='1px solid' mt='5' px="100px">
-        <Mainroute />
-      </Box>
+      <MyContext.Provider value={{ cart, setCart }}>
+        <Navbar />
+        <Box mt="5" px="100px">
+          <Mainroute />
+        </Box>
+      </MyContext.Provider>
     </>
   );
 }

@@ -12,27 +12,50 @@ import {
 } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { memo } from "react";
+import { memo, useContext } from "react";
 import Logo from "../assets/images/logo.png";
+import { MyContext } from "../App";
 const Navbar = () => {
+  const { cart } = useContext(MyContext);
   return (
-    <Flex align="center" h="60px" px="60px" rounded="md" shadow="lg">
+    <Flex
+      pos="sticky"
+      top="0px"
+      left="0px"
+      zIndex={60}
+      bg="white"
+      align="center"
+      h="60px"
+      px="60px"
+      rounded="md"
+      shadow="lg"
+    >
       <Link to="/">
         <Image h="60px" src={Logo} />
       </Link>
       <Spacer />
-      <InputGroup h="35px" w="400px" rounded="none">
-        <InputLeftElement pointerEvents="none">
-          <BiSearch />
-        </InputLeftElement>
-        <Input type="tel" placeholder="Search products..." />
-      </InputGroup>
+      <Box pos="relative">
+        <InputGroup h="35px" w="400px" rounded="none">
+          <InputLeftElement pointerEvents="none">
+            <BiSearch />
+          </InputLeftElement>
+          <Input type="text" placeholder="Search products..." />
+        </InputGroup>{" "}
+        <Box
+          display="none"
+          top="50px"
+          border="1px solid"
+          h="300px"
+          w="full"
+          pos="absolute"
+        ></Box>
+      </Box>
       <Spacer />
       <Flex gap="40px">
         <Link to="/cart">
           {" "}
           <Button
-            bg="black"
+            bg="#1c1c1b"
             color="white"
             rounded="none"
             fontSize="sm"
@@ -41,7 +64,7 @@ const Navbar = () => {
               bg: "black",
             }}
           >
-            Cart
+            Cart {cart.length}
           </Button>
         </Link>
         <Link to="/signup">

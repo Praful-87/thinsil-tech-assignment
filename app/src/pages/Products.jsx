@@ -10,44 +10,56 @@ import {
   Text,
   Button,
   Image,
+  Flex,
+  SimpleGrid,
+  Select,
 } from "@chakra-ui/react";
-import React from "react";
+import Prouduct from "../assets/images/prouduct.png";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import ProductsCard from "../components/ProductsCard";
 
 const Products = () => {
+  const [products, setProducts] = useState(null);
+  async function fetchAndUpdate() {
+    try {
+      let res = await axios.get("http://localhost:8000/products");
+      setProducts(res.data);
+    } catch (error) {
+      console.log(error.message);
+      setProducts(null);
+    }
+  }
+  useEffect(() => {
+    fetchAndUpdate();
+  }, []);
   return (
-    <Box>
-      <Card maxW="sm">
-        <CardBody>
-          <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">Living room Sofa</Heading>
-            <Text>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces, earthy toned spaces and for people who love a chic design
-              with a sprinkle of vintage design.
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              $450
-            </Text>
-          </Stack>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
-              Buy now
-            </Button>
-            <Button variant="ghost" colorScheme="blue">
-              Add to cart
-            </Button>
-          </ButtonGroup>
-        </CardFooter>
-      </Card>
-    </Box>
+    <Flex gap="4">
+      <Box w="400px" shadow="md" h="fit-content" p={"4"}>
+        <Heading size="sm" p="4">
+          Filterrs
+        </Heading>
+        <Select
+          value={""}
+          onChange={(e) => console.log(e.target.value)}
+          placeholder="Filter by category"
+        >
+          {products?.map((item) => {
+            return (
+              <option key={item.id} value={item.category}>
+                {" "}
+                {item.category}{" "}
+              </option>
+            );
+          })}
+        </Select>
+      </Box>
+      <SimpleGrid columns={[2, 3]} gap="4">
+        {products?.map((product) => {
+          return <ProductsCard key={product.id} product={product} />;
+        })}
+      </SimpleGrid>{" "}
+    </Flex>
   );
 };
 
