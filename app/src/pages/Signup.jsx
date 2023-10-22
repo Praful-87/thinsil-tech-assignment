@@ -35,16 +35,14 @@ const Signup = () => {
   return (
     <Flex
       shadow={"lg"}
-      p="4"
       rounded={"md"}
-        border="1px solid gray" 
       w="fit-content"
       m="auto"
     >
       <Box flex="1">
         <Image src="https://images.unsplash.com/photo-1612585763928-e64fdc2a3d38?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGxvZ2luJTIwcGFnZXxlbnwwfHwwfHx8MA%3D%3D" />
       </Box>
-      <Box p="40px" flex="1">
+      <Box p="40px" flex="1" shadow={'md'}>
         <Heading mb="30px">Signup Form</Heading>
         <form onSubmit={handleSubmit}>
           <Box>
