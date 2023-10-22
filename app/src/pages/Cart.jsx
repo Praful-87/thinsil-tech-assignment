@@ -9,7 +9,7 @@ import {
   Icon,
   useToast,
 } from "@chakra-ui/react";
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { MyContext } from "../App";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { FaCartArrowDown } from "react-icons/fa";
@@ -17,7 +17,10 @@ import CartItem from "../components/CartItem";
 
 const Cart = () => {
   const { cart, setCart } = useContext(MyContext);
+  const [total, setTotal] = useState(0);
   const toast = useToast();
+  console.log(total);
+
   function handelCheckout() {
     toast({
       title: "Payment successfull",
@@ -28,6 +31,19 @@ const Cart = () => {
       status: "success",
     });
   }
+  function totalCalulator() {
+    let temp = 0;
+    console.log(cart);
+
+    for (let i = 0; i < cart.length; i++) {
+      let item = cart[i];
+      temp = temp + item.qty * item.price;
+    }
+    setTotal(temp);
+  }
+  useEffect(() => {
+    totalCalulator();
+  }, [cart]);
   return (
     <Flex gap="4">
       <Box
@@ -46,6 +62,9 @@ const Cart = () => {
           })}
         </Flex>
       </Box>
+
+      {/* checkout section */}
+
       <Flex
         shadow={"md"}
         w="400px"
@@ -59,17 +78,17 @@ const Cart = () => {
         <Flex>
           <Text fontSize={"lg"}>Subtotal</Text>
           <Spacer />
-          <Text>3999 ₹</Text>
+          <Text>{total} ₹</Text>
         </Flex>
         <Flex>
-          <Text fontSize={"lg"}>Shipping Charge</Text>
+          <Text fontSize={"lg"}>Shipping Charges</Text>
           <Spacer />
-          <Text>59 ₹</Text>
+          <Text>49 ₹</Text>
         </Flex>
         <Flex>
           <Text fontSize={"lg"}>Total</Text>
           <Spacer />
-          <Text>4999 ₹</Text>
+          <Text>{total > 0 ? total + 49 : 0} ₹</Text>
         </Flex>
         <Divider />
         <Button

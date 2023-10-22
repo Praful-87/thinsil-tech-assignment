@@ -23,7 +23,7 @@ const ProductsCard = ({ product }) => {
     setCart([...cart, product]);
     toast({
       title: "Item added to cart",
-      position: "top-right",
+      position: "top",
       duration: 3000,
       status: "success",
       isClosable: true,
