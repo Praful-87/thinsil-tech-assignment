@@ -59,7 +59,9 @@ const Signup = () => {
           <Image src="https://images.unsplash.com/photo-1612585763928-e64fdc2a3d38?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGxvZ2luJTIwcGFnZXxlbnwwfHwwfHx8MA%3D%3D" />
         </Box>
         <Box p="40px" flex="1" shadow={"md"}>
-          <Heading mb="30px">Signup Form</Heading>
+          <Heading textAlign={"center"} mb="30px">
+            Create an account 💖
+          </Heading>
           <form onSubmit={handleSubmit}>
             <Box>
               <Text mb="4px" mt="10px">
@@ -97,13 +99,24 @@ const Signup = () => {
                 required
               />
             </Box>
-            <Flex mt="10px" align="center">
+            <Flex mt="20px" align="center">
               <Button colorScheme="whatsapp" rounded="4px" type="submit">
                 Sign Up
               </Button>
               <Spacer />
               <Link to="/login">
-                <Text color={"blue.600"}>Already have account? Login</Text>
+                <Text
+                  border="1px"
+                  borderColor={"blue.400"}
+                  rounded="4px"
+                  p="2"
+                  _hover={{
+                    bg: "blue.100",
+                  }}
+                  color={"blue.600"}
+                >
+                  Already have account? Login
+                </Text>
               </Link>
             </Flex>
           </form>
