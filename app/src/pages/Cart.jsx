@@ -30,6 +30,8 @@ const Cart = () => {
       position: "top",
       status: "success",
     });
+    setCart([]);
+    localStorage.clear();
   }
   function totalCalulator() {
     let temp = 0;

@@ -12,11 +12,13 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { MyContext } from "../App";
 
-const Signup = () => {
-  const toast = useToast();
+const Login = () => {
+  const { isAuth, setIsAuth } = useContext(MyContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,14 +36,15 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res = await axios.get(
-      `http://localhost:8000/user?email=${formData.email}`
+      `http://localhost:8000/user?email=${formData.email}&password=${formData.password}`
     );
-    console.log(res.data);
+    // console.log(res.data);
     if (res.data.length > 0) {
-      alert("User already present please login");
+      alert("login successfull");
+      setIsAuth(true);
+      navigate("/");
     } else {
-      await axios.post("http://localhost:8000/user", formData);
-      alert("user created sucessfully");
+      alert("wrong credential");
     }
   };
 
@@ -59,7 +62,7 @@ const Signup = () => {
           <Image src="https://images.unsplash.com/photo-1612585763928-e64fdc2a3d38?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGxvZ2luJTIwcGFnZXxlbnwwfHwwfHx8MA%3D%3D" />
         </Box>
         <Box p="40px" flex="1" shadow={"md"}>
-          <Heading mb="30px">Signup Form</Heading>
+          <Heading mb="30px">Welcome Back! 👋</Heading>
           <form onSubmit={handleSubmit}>
             <Box>
               <Text mb="4px" mt="10px">
@@ -85,25 +88,14 @@ const Signup = () => {
                 required
               />
             </Box>
-            <Box>
-              <Text mb="4px" mt="10px">
-                Confirm Password:
-              </Text>
-              <Input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-            </Box>
+
             <Flex mt="10px" align="center">
               <Button colorScheme="whatsapp" rounded="4px" type="submit">
-                Sign Up
+                Login
               </Button>
               <Spacer />
-              <Link to="/login">
-                <Text color={"blue.600"}>Already have account? Login</Text>
+              <Link to="/signup">
+                <Text color={"blue.600"}>Don't have account? Signup</Text>
               </Link>
             </Flex>
           </form>
@@ -113,4 +105,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

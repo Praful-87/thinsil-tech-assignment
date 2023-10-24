@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Redmi Note 12 Pro",
+      "price": 21999,
+      "category": "Mobiles & Tablets"
+    },
+    {
+      "id": 2,
+      "name": "Microwave Oven",
+      "price": 5999,
+      "category": "Electronic"
+    },
+    {
+      "id": 3,
+      "name": "Lunch Box",
+      "price": 149,
+      "category": "Home & Kitchen"
+    },
+    {
+      "id": 4,
+      "name": "Lg tv 32 Inch",
+      "price": 14999,
+      "category": "TV & Applinces"
+    },
+    {
+      "id": 5,
+      "name": "T-shirt",
+      "price": 499,
+      "category": "Fashion"
+    },
+    {
+      "id": 6,
+      "name": "Lg tv 32 Inch",
+      "price": 14999,
+      "category": "Sports"
+    },
+    {
+      "id": 7,
+      "name": "Nike Shoes",
+      "price": 1999,
+      "category": "Fashion"
+    },
+    {
+      "id": 8,
+      "name": "Tooth brush",
+      "price": 99,
+      "category": "Daily Needs"
+    }
+  ],
+  "user": [
+    {
+      "email": "prafuljadhao87@gmail.com",
+      "password": "df",
+      "confirmPassword": "df",
+      "id": 1
+    }
+  ]
+}

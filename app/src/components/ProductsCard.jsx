@@ -15,9 +15,20 @@ import { useContext, useState } from "react";
 import { MyContext } from "../App";
 
 const ProductsCard = ({ product }) => {
-  const { cart, setCart } = useContext(MyContext);
+  const { cart, setCart, isAuth } = useContext(MyContext);
   const toast = useToast();
   function addToCart(product) {
+    if (!isAuth) {
+      toast({
+        title: "Not authenticated",
+        description: "Login first",
+        status: "warning",
+        duration: 3000,
+        isClosable: true,
+        position: "top",
+      });
+      return;
+    }
     product.qty = 1;
     localStorage.setItem("cart", JSON.stringify([...cart, product]));
     setCart([...cart, product]);
@@ -30,7 +41,7 @@ const ProductsCard = ({ product }) => {
     });
   }
   return (
-    <Card maxW="sm">
+    <Card maxW="sm" h="fit-content">
       <CardBody>
         <Image src={Prouduct} borderRadius="md" />
         <Stack mt="6" spacing="3">

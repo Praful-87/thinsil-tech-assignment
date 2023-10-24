@@ -21,29 +21,43 @@ import ProductsCard from "../components/ProductsCard";
 
 const Products = () => {
   const [products, setProducts] = useState(null);
+  const [tempProducts, setTempProducts] = useState(null);
   async function fetchAndUpdate() {
     try {
       let res = await axios.get("http://localhost:8000/products");
       setProducts(res.data);
+      setTempProducts(res.data);
     } catch (error) {
       console.log(error.message);
       setProducts(null);
+      setTempProducts(null);
     }
   }
+  function handelFilterData(e) {
+    let option = e.target.value;
+    if (option === "all") {
+      setTempProducts(products);
+      return;
+    }
+    setTempProducts(
+      products.filter((item) => {
+        return item.category === option;
+      })
+    );
+    // console.log(option);
+  }
+
   useEffect(() => {
     fetchAndUpdate();
   }, []);
   return (
-    <Flex gap="4">
+    <Flex gap="4" minH="100vh">
       <Box w="400px" shadow="md" h="fit-content" p={"4"}>
         <Heading size="sm" p="4">
           Filterrs
         </Heading>
-        <Select
-          value={""}
-          onChange={(e) => console.log(e.target.value)}
-          placeholder="Filter by category"
-        >
+        <Select onChange={handelFilterData}>
+          <option value="all">All</option>
           {products?.map((item) => {
             return (
               <option key={item.id} value={item.category}>
@@ -55,7 +69,7 @@ const Products = () => {
         </Select>
       </Box>
       <SimpleGrid columns={[2, 3]} gap="4">
-        {products?.map((product) => {
+        {tempProducts?.map((product) => {
           return <ProductsCard key={product.id} product={product} />;
         })}
       </SimpleGrid>{" "}

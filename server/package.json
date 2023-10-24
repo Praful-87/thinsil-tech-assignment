@@ -1,19 +1,15 @@
 {
-  "name": "server",
+  "name": "ok",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "json-server --watch db.json --port 8000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^7.6.3",
-    "nodemon": "^3.0.1"
+    "json-server": "^0.17.4"
   }
 }

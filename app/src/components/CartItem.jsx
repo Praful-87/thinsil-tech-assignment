@@ -52,14 +52,14 @@ const CartItem = ({ item }) => {
 
       <Flex align="center" gap="6">
         <Flex align={"center"} gap="3">
-          <Button onClick={() => hadelQty(item.id, 1)} colorScheme="green">
+          <Button onClick={() => hadelQty(item.id, 1)} colorScheme="blue">
             +
           </Button>
           <Button colorScheme="green">{item.qty}</Button>
           <Button
             onClick={() => hadelQty(item.id, -1)}
             isDisabled={item.qty === 1}
-            colorScheme="green"
+            colorScheme="blue"
           >
             -
           </Button>

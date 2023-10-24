@@ -16,7 +16,6 @@ const theme = extendTheme({ config });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider>
     <BrowserRouter>
-      {" "}
       <App />
     </BrowserRouter>
   </ChakraProvider>
