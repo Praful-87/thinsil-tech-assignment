@@ -21,11 +21,11 @@ function App() {
   return (
     <>
       <MyContext.Provider value={{ cart, setCart, isAuth, setIsAuth }}>
-        //Importing navbar component here to be available to in every page
+        {/*Importing navbar component here to be available to in every page*/}
         <Navbar />
-        // Main content of project will render in this
+        {/* Main content of project will render in this */}
         <Box mt="5" px="100px">
-          // Main routes to provide routin in the projects
+          {/* Main routes to provide routin in the projects */}
           <Mainroute />
         </Box>
       </MyContext.Provider>
