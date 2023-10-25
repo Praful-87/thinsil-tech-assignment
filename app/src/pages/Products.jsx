@@ -22,6 +22,8 @@ import ProductsCard from "../components/ProductsCard";
 const Products = () => {
   const [products, setProducts] = useState(null);
   const [tempProducts, setTempProducts] = useState(null);
+
+  // data fetch and upadator function to update the dom after fetching the data
   async function fetchAndUpdate() {
     try {
       let res = await axios.get("http://localhost:8000/products");
@@ -33,6 +35,8 @@ const Products = () => {
       setTempProducts(null);
     }
   }
+  // Fiter products on category
+
   function handelFilterData(e) {
     let option = e.target.value;
     if (option === "all") {
@@ -44,7 +48,6 @@ const Products = () => {
         return item.category === option;
       })
     );
-    // console.log(option);
   }
 
   useEffect(() => {

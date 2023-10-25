@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 const Mainroute = () => {
   return (
     <Routes>
+      // Routes and paths
       <Route path="/" element={<Products />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />

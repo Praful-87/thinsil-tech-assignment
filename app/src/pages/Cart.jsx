@@ -19,8 +19,8 @@ const Cart = () => {
   const { cart, setCart } = useContext(MyContext);
   const [total, setTotal] = useState(0);
   const toast = useToast();
-  console.log(total);
 
+  //Checkout handeler function
   function handelCheckout() {
     toast({
       title: "Payment successfull",
@@ -33,6 +33,9 @@ const Cart = () => {
     setCart([]);
     localStorage.clear();
   }
+
+  // Total calculator function to handel cart quantity increase and decrease
+
   function totalCalulator() {
     let temp = 0;
     console.log(cart);
@@ -43,11 +46,15 @@ const Cart = () => {
     }
     setTotal(temp);
   }
+  // handeler rerendering of cart component of using useEffect to update compoent on every cart change
+
   useEffect(() => {
     totalCalulator();
   }, [cart]);
   return (
     <Flex gap="4">
+      {/* cart Items with quantity and total price */}
+
       <Box
         maxH="calc(100vh - 100px)"
         flex="2"

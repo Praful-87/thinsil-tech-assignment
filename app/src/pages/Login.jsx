@@ -33,12 +33,15 @@ const Login = () => {
     });
   };
 
+  // user input data handel function
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res = await axios.get(
       `http://localhost:8000/user?email=${formData.email}&password=${formData.password}`
     );
-    // console.log(res.data);
+    // checkng credential and authentication
+
     if (res.data.length > 0) {
       alert("login successfull");
       setIsAuth(true);

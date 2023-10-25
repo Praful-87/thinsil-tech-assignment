@@ -23,6 +23,7 @@ const Signup = () => {
     confirmPassword: "",
   });
 
+  // handel on change of input boxes and store in formData variable
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -38,8 +39,12 @@ const Signup = () => {
     );
     console.log(res.data);
     if (res.data.length > 0) {
+      // cheking if user already present or not if
+
       alert("User already present please login");
     } else {
+      // if not present then post user data to database
+
       await axios.post("http://localhost:8000/user", formData);
       alert("user created sucessfully");
     }
